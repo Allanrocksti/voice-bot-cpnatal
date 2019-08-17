@@ -5,18 +5,18 @@ import urllib.error
 import base64
 import json
 
+headers = {
+    "Content-Type": "application/json",
+    "Ocp-Apim-Subscription-Key": "8cd51b2f9b594164ad87f4d8b88b6d3b"
+}
+
+params = urllib.parse.urlencode({
+    "appId": "8536448d-6aed-4191-98f7-3227cb74f409",
+    "versionId": "0.1"
+})
+
 
 def postMsg(text, intent):
-    headers = {
-        # Request headers
-        "Content-Type": "application/json",
-        "Ocp-Apim-Subscription-Key": "8cd51b2f9b594164ad87f4d8b88b6d3b"
-    }
-
-    params = urllib.parse.urlencode({
-        "appId": "8536448d-6aed-4191-98f7-3227cb74f409",
-        "versionId": "0.1"
-    })
     body = {
         "text": text,
         "intentName": intent
@@ -33,3 +33,96 @@ def postMsg(text, intent):
         return(data)
     except Exception as e:
         return (e)
+
+
+def createEntities():
+    mock = [
+        {
+            "name": "cenario",
+            "sublists": [
+                {"canonicalForm": "previsto", "list": []},
+                {"canonicalForm": "planejado", "list": []},
+                {"canonicalForm": "planejamento", "list": []},
+                {"canonicalForm": "realizado", "list": []},
+                {"canonicalForm": "realização", "list": []},
+                {"canonicalForm": "projetado", "list": []},
+                {"canonicalForm": "projeção", "list": []},
+                {"canonicalForm": "prevista", "list": []},
+                {"canonicalForm": "planejada", "list": []},
+                {"canonicalForm": "realizada", "list": []},
+                {"canonicalForm": "projetada", "list": []},
+                {"canonicalForm": "atrasado", "list": []},
+                {"canonicalForm": "atraso", "list": []}
+            ]
+        },
+        {
+            "name": "estrutura",
+            "sublists": [
+                {"canonicalForm": "cenpes", "list": []},
+                {"canonicalForm": "pddp", "list": []},
+                {"canonicalForm": "pdep", "list": []},
+                {"canonicalForm": "pdrgn", "list": []},
+                {"canonicalForm": "pdiso", "list": []}
+            ]
+        },
+        {"name": "valor", "sublists": [
+            {"canonicalForm": "valor", "list": []}]},
+        {
+            "name": "mes",
+            "sublists": [
+                {"canonicalForm": "janeiro", "list": []},
+                {"canonicalForm": "fevereiro", "list": []},
+                {"canonicalForm": "marco", "list": []},
+                {"canonicalForm": "abril", "list": []},
+                {"canonicalForm": "maio", "list": []},
+                {"canonicalForm": "junho", "list": []},
+                {"canonicalForm": "julho", "list": []},
+                {"canonicalForm": "agosto", "list": []},
+                {"canonicalForm": "setembro", "list": []},
+                {"canonicalForm": "outubro", "list": []},
+                {"canonicalForm": "novembro", "list": []},
+                {"canonicalForm": "dezembro", "list": []}
+            ]
+        },
+        {"name": "ano", "sublists": [
+            {"canonicalForm": "integer", "list": []}]},
+        {
+            "name": "acumulado",
+            "sublists": [{"canonicalForm": "acumulado", "list": []}]
+        },
+        {
+            "name": "agencia",
+            "sublists": [
+                {"canonicalForm": "aneel", "list": []},
+                {"canonicalForm": "anp", "list": []}
+            ]
+        },
+        {
+            "name": "tipo_obrig",
+            "sublists": [
+                {"canonicalForm": "interna", "list": []},
+                {"canonicalForm": "externa", "list": []},
+                {"canonicalForm": "total", "list": []}
+            ]
+        },
+        {
+            "name": "quantidade",
+            "sublists": [{"canonicalForm": "quantidade", "list": []}]
+        }
+    ]
+
+    for item in mock:
+        body = json.dumps(item)
+        try:
+            conn = http.client.HTTPSConnection(
+                'westus.api.cognitive.microsoft.com')
+            conn.request("POST", "/luis/api/v2.0/apps/8536448d-6aed-4191-98f7-3227cb74f409/versions/0.1/closedlists?%s" % params,
+                         body, headers)
+            response = conn.getresponse()
+            data = response.read()
+            conn.close()
+            print(data)
+            # return(data)
+        except Exception as e:
+            print(e)
+            # return (e)
