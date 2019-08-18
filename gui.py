@@ -1,5 +1,5 @@
 def printMainMenu():
-    
+
     print("                          ###################################")
     print("                          ##                               ##")
     print("                          ## - Olá humano, o que deseja? - ##")
@@ -38,8 +38,9 @@ def printMainMenu():
     print("         |        ||        |")
     print("         '--------''--------'")
 
+
 def printVoice():
-    
+
     print("                          ###################################")
     print("                          ##                               ##")
     print("                          ##                               ##")

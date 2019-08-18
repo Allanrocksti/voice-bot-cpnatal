@@ -1,5 +1,6 @@
 import json
 
+
 def formatResponseJson(responseJson):
     newJson = json.loads(responseJson)
     intent = ""
@@ -17,7 +18,7 @@ def formatResponseJson(responseJson):
     obj = ({
         intent: {}
     })
-    
+
     for item in entities:
         obj[intent] = ({
             **obj[intent],

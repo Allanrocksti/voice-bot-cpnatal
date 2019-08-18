@@ -2,6 +2,7 @@ import os
 import shutil
 from pydub import AudioSegment
 
+
 def convertByFolder():
     pathFolder = "Audios/obrigacao/"
     files = []
@@ -17,6 +18,8 @@ def convertByFolder():
             pathFile = "{}{}".format(pathFolder, mp3)
             print(pathFile)
             sound = AudioSegment.from_mp3(pathFile)
-            sound.export("{}dist/{}.wav".format(pathFolder, mp3.strip(".mp3")), format="wav")
+            sound.export("{}dist/{}.wav".format(pathFolder,
+                                                mp3.strip(".mp3")), format="wav")
+
 
 convertByFolder()

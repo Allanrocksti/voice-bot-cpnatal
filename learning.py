@@ -1,12 +1,13 @@
 from luis_api import *
 
-filesPath = ["Audios/transcript/capex.txt", "Audios/transcript/gog.txt", "Audios/transcript/marcos_criticos.txt", "Audios/transcript/obrigacao.txt"]
+filesPath = ["Audios/transcript/capex.txt", "Audios/transcript/gog.txt",
+             "Audios/transcript/marcos_criticos.txt", "Audios/transcript/obrigacao.txt"]
 types = ["capex", "gog", "marcos_criticos", "obrigacao"]
 
 matrix = []
 listinha = []
 
-for idx in range(0,4):
+for idx in range(0, 4):
     matrix = []
     listinha = []
     file = open(filesPath[idx], 'r')
@@ -22,7 +23,7 @@ for idx in range(0,4):
         matrix.append(listinha)
     for coisinha in matrix:
         print(postMsg(coisinha))
-    
+
     print("Lista {} Concluida".format(idx))
     file.close()
     matrix = []
