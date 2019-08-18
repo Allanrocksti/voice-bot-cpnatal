@@ -16,12 +16,8 @@ params = urllib.parse.urlencode({
 })
 
 
-def postMsg(text, intent):
-    body = {
-        "text": text,
-        "intentName": intent
-    }
-    body = json.dumps(body)
+def postMsg(array):
+    body = json.dumps(array)
     try:
         conn = http.client.HTTPSConnection(
             'westus.api.cognitive.microsoft.com')
@@ -32,6 +28,7 @@ def postMsg(text, intent):
         conn.close()
         return(data)
     except Exception as e:
+        print("\n -----------Errouuu -----------\n")
         return (e)
 
 
