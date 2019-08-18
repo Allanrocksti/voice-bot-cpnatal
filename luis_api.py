@@ -142,7 +142,6 @@ def teste_exaple(text):
 
         res = conn.getresponse()
         data = res.read()
-        print("success")
         conn.close()
         return(data.decode("utf-8"))
     except Exception as e:
