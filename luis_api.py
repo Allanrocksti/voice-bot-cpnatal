@@ -6,8 +6,8 @@ import base64
 import json
 
 headers = {
-    "Content-Type": "application/json",
-    "Ocp-Apim-Subscription-Key": "8cd51b2f9b594164ad87f4d8b88b6d3b"
+    "Ocp-Apim-Subscription-Key": "8cd51b2f9b594164ad87f4d8b88b6d3b",
+    "Content-Type": "application/json; charset=utf-8"
 }
 
 params = urllib.parse.urlencode({
@@ -126,3 +126,31 @@ def createEntities():
         except Exception as e:
             print(e)
             # return (e)
+
+
+def teste_exaple(text):
+    headers = {
+        'Content-Type': "application/json",
+        'Ocp-Apim-Subscription-Key': "8cd51b2f9b594164ad87f4d8b88b6d3b"
+    }
+    payload = ""
+    text = urllib.parse.quote(text)
+    path = "example=%si&patternDetails=true&multiple-intents=true" % text
+    path = "/luis/webapi/v2.0/apps/8536448d-6aed-4191-98f7-3227cb74f409/versions/0.1/predict?" + path
+    try:
+        conn = http.client.HTTPSConnection(
+            "westus.api.cognitive.microsoft.com")
+        conn.request(
+            "GET", path, payload, headers)
+
+        res = conn.getresponse()
+        data = res.read()
+        print("success")
+        conn.close()
+        return(data.decode("utf-8"))
+    except Exception as e:
+        print("error")
+        return (e)
+
+
+print(teste_exaple("janeiro é dms"))

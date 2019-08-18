@@ -1,0 +1,31 @@
+{"id":null,"text":"teste","alteredText":"teste","tokenizedText":["teste"],"intentPredictions":[{"id":"49385484-7c96-4399-8063-952c327a900b","name":"gog","score":0.2372814},{"id":"d699a935-3f08-4f02-8157-79fc318e627f","name":"capex","score":0.205342054},{"id":"15179ff5-a0d4-4380-96cb-7be740f17cd8","name":"None","score":0.204991132},{"id":"549057a5-97bb-48f7-a84d-81fe4bf84908","name":"marcos_criticos","score":0.0290886313},{"id":"deb8537c-d3c3-4c20-8fb9-849f252b56bc","name":"obrigacao","score":0.0110264774}],"entityPredictions":[],"tokenMetadata":[{"hasSpace":false}],"patternPredictions":[],"sentimentAnalysis":null,"connectedServiceResult":null,"multiIntentPredictions":[]}\
+
+
+predict?example=teste&patternDetails=true&multiple-intents=true
+
+import http.client
+
+conn = http.client.HTTPConnection("westus,api,cognitive,microsoft,com")
+
+payload = "{\n\t\"text\": \"qual é o valor realizado do CAPS PDF até o mês de abril de dois mil e dezenove\",\n\t\"intentName\": \"capex\"\n}"
+
+headers = {
+    'Content-Type': "application/json",
+    'Ocp-Apim-Subscription-Key': "8cd51b2f9b594164ad87f4d8b88b6d3b",
+    'User-Agent': "PostmanRuntime/7.13.0",
+    'Accept': "*/*",
+    'Cache-Control': "no-cache",
+    'Postman-Token': "56b3a458-8af0-45ce-9f25-7064ca48a4f8,92727790-5064-4ceb-a206-c12bca740b08",
+    'Host': "westus.api.cognitive.microsoft.com",
+    'accept-encoding': "gzip, deflate",
+    'content-length': "120",
+    'Connection': "keep-alive",
+    'cache-control': "no-cache"
+    }
+
+conn.request("GET", "luis,api,v2.0,apps,8536448d-6aed-4191-98f7-3227cb74f409,versions,0.1,predict", payload, headers)
+
+res = conn.getresponse()
+data = res.read()
+
+print(data.decode("utf-8"))
