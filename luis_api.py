@@ -150,4 +150,4 @@ def teste_exaple(text):
         return (e)
 
 
-print(teste_exaple("janeiro é dms"))
+# print(teste_exaple("janeiro é dms"))
